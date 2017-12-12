@@ -17,10 +17,16 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = os.Remove(out.Name())
-	if err != nil {
-		log.Fatal(err)
-	}
+	defer func() {
+		err = out.Close()
+		if err != nil {
+			log.Print(err)
+		}
+		err = os.Remove(out.Name())
+		if err != nil {
+			log.Print(err)
+		}
+	}()
 
 	buf := []byte{'A'}
 	N := *pN
@@ -41,9 +47,4 @@ func main() {
 
 	log.Printf("That took %s for %d fsyncs", duration, N)
 	log.Printf("That took %s per fsync", duration/time.Duration(N))
-
-	err = out.Close()
-	if err != nil {
-		log.Fatal(err)
-	}
 }
