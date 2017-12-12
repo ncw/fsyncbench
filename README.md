@@ -3,6 +3,9 @@ Fsync bench
 
 Benchmark fsync
 
+Download a [binary from github](https://github.com/ncw/fsyncbench/releases/latest)
+or build from source (see later).
+
 Usage
 =====
 
