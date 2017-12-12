@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"syscall"
 	"time"
 )
 
@@ -22,7 +21,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fd := int(out.Fd())
 
 	buf := []byte{'A'}
 	N := *pN
@@ -33,7 +31,7 @@ func main() {
 			log.Fatal(err)
 		}
 		start := time.Now()
-		err = syscall.Fsync(fd)
+		err = out.Sync()
 		end := time.Now()
 		duration += end.Sub(start)
 		if err != nil {
