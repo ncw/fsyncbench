@@ -14,6 +14,7 @@ Usage
 Flags
 
     -n=100: Iterations to test - default 100
+    -dir=/tmp: Target directory - default os.TmpDir()
 
 It will produce output like this
 
@@ -55,3 +56,4 @@ Contributors
 ------------
 
 - Your name goes here!
+- Matteo Olivi <matteoolivi7@gmail.com>
