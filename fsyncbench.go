@@ -9,11 +9,14 @@ import (
 	"time"
 )
 
-var pN = flag.Int("n", 100, "Iterations to test - default 100")
+var (
+	pN  = flag.Int("n", 100, "Iterations to test - default 100")
+	dir = flag.String("dir", "", "Target directory - default os.TmpDir()")
+)
 
 func main() {
 	flag.Parse()
-	out, err := ioutil.TempFile("", "fsyncbench")
+	out, err := ioutil.TempFile(*dir, "fsyncbench")
 	if err != nil {
 		log.Fatal(err)
 	}
